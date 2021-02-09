@@ -24,5 +24,5 @@ release-dry-run:
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		-v `pwd`:/go/src/github.com/crowdstrike/kubectl-falcon \
 		-w /go/src/github.com/crowdstrike/kubectl-falcon \
-		troian/golang-cross:${GOLANG_CROSS_VERSION} \
+		cross \
 		-f "$(GORELEASER_CONFIG)" --skip-validate=$(GORELEASER_SKIP_VALIDATE) --rm-dist --skip-publish
