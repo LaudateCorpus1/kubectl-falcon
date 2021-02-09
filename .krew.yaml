@@ -1,0 +1,37 @@
+apiVersion: krew.googlecontainertools.github.com/v1alpha2
+kind: Plugin
+metadata:
+  name: falcon
+spec:
+  shortDescription: A plug-in for CrowdStrike Falcon Container Sensor
+  homepage: https://github.com/crowdstrike/kubectl-falcon
+  description: |
+    kubectl-falcon is plug-in under active development. This plug-in aims to provide improvements
+    to the operational experience of deploying CrowdStrike Falcon Container Sensor to the cluster.
+
+    Learn more about CrowdStrike Falcon Container Sensor at
+    https://www.crowdstrike.com/products/cloud-security/falcon-cloud-workload-protection/container-security/
+
+  caveats: |
+    Usage:
+      $ kubectl falcon
+
+    For additional options:
+      $ kubectl falcon help image-refresh
+
+  version: "v0.0.1"
+  platforms:
+  - selector:
+      matchLabels:
+        os: linux
+        arch: amd64
+    uri: https://github.com/crowdstrike/kubectl-falcon/releases/download/v0.0.1/falcon_linux_amd64.tar.gz
+    sha256: ""
+    files:
+    - from: "./kubectl-falcon"
+      to: "."
+    - from: LICENSE
+      to: "."
+    - from: README.md
+      to: "."
+    bin: "kubectl-falcon"
