@@ -1,0 +1,25 @@
+project_name: kubectl-falcon
+release:
+  github:
+    owner: crowdstrike
+    name: kubectl-falcon
+builds:
+  - id: falcon
+    goos:
+    - linux
+    goarch:
+    - amd64
+    env:
+      - CGO_ENABLED=1
+      - GO111MODULE=on
+    main: ./main.go
+    ldflags: -s -w
+      -X github.com/crowdstrike/kubectl-falcon/pkg/version.version=
+archives:
+  - id: falcon
+    builds:
+    - falcon
+    name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
+    format_overrides:
+    - goos: windows
+      format: zip
