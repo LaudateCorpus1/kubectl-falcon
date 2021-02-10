@@ -36,6 +36,12 @@ func imageRefresh(global *globalOptions) *cobra.Command {
 			if len(args) != 1 {
 				return errors.New("Please provide exactly one argument as DESTINATION-IMAGE")
 			}
+			if os.Getenv("FALCON_CLIENT_ID") == "" {
+				return errors.New("Missing FALCON_CLIENT_ID environment variable. Please provide your Client Id for authentication with CrowdStrike Falcon platform")
+			}
+			if os.Getenv("FALCON_CLIENT_SECRET") == "" {
+				return errors.New("Missing FALCON_CLIENT_SECRET environment variable. Please provide your Client Secret for authentication with CrowdStrike Falcon platform")
+			}
 			return nil
 		},
 		RunE: commandAction(opts.run),
