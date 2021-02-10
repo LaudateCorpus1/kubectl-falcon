@@ -93,6 +93,7 @@ func (opts *refreshImageOptions) run(args []string, stdout io.Writer) error {
 		return fmt.Errorf("Failed to build internal image representation for falcon image: %v", err)
 	}
 
+	fmt.Fprintf(stdout, "Pushing image to %s\n", destRef)
 	_, err = copy.Image(ctx, policyContext, destRef, ref, &copy.Options{
 		DestinationCtx: destinationContext,
 		ReportWriter:   stdout,
