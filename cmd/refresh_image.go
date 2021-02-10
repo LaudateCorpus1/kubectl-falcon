@@ -36,6 +36,12 @@ func imageRefresh(global *globalOptions) *cobra.Command {
 			if len(args) != 1 {
 				return errors.New("Please provide exactly one argument as DESTINATION-IMAGE")
 			}
+			if os.Getenv("FALCON_CLIENT_ID") == "" {
+				return errors.New("Missing FALCON_CLIENT_ID environment variable. Please provide your OAuth2 API Client ID for authentication with CrowdStrike Falcon platform. Establishing and retrieving OAuth2 API credentials can be performed at https://falcon.crowdstrike.com/support/api-clients-and-keys.")
+			}
+			if os.Getenv("FALCON_CLIENT_SECRET") == "" {
+				return errors.New("Missing FALCON_CLIENT_SECRET environment variable. Please provide your OAuth2 API Client Secret for authentication with CrowdStrike Falcon platform. Establishing and retrieving OAuth2 API credentials can be performed at https://falcon.crowdstrike.com/support/api-clients-and-keys.")
+			}
 			return nil
 		},
 		RunE: commandAction(opts.run),
@@ -87,6 +93,7 @@ func (opts *refreshImageOptions) run(args []string, stdout io.Writer) error {
 		return fmt.Errorf("Failed to build internal image representation for falcon image: %v", err)
 	}
 
+	fmt.Fprintf(stdout, "Pushing image to %s\n", destRef)
 	_, err = copy.Image(ctx, policyContext, destRef, ref, &copy.Options{
 		DestinationCtx: destinationContext,
 		ReportWriter:   stdout,
