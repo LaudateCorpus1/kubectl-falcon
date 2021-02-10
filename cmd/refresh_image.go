@@ -37,10 +37,10 @@ func imageRefresh(global *globalOptions) *cobra.Command {
 				return errors.New("Please provide exactly one argument as DESTINATION-IMAGE")
 			}
 			if os.Getenv("FALCON_CLIENT_ID") == "" {
-				return errors.New("Missing FALCON_CLIENT_ID environment variable. Please provide your Client Id for authentication with CrowdStrike Falcon platform")
+				return errors.New("Missing FALCON_CLIENT_ID environment variable. Please provide your OAuth2 API Client ID for authentication with CrowdStrike Falcon platform. Establishing and retrieving OAuth2 API credentials can be performed at https://falcon.crowdstrike.com/support/api-clients-and-keys.")
 			}
 			if os.Getenv("FALCON_CLIENT_SECRET") == "" {
-				return errors.New("Missing FALCON_CLIENT_SECRET environment variable. Please provide your Client Secret for authentication with CrowdStrike Falcon platform")
+				return errors.New("Missing FALCON_CLIENT_SECRET environment variable. Please provide your OAuth2 API Client Secret for authentication with CrowdStrike Falcon platform. Establishing and retrieving OAuth2 API credentials can be performed at https://falcon.crowdstrike.com/support/api-clients-and-keys.")
 			}
 			return nil
 		},
