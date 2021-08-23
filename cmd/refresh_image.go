@@ -86,7 +86,7 @@ func (opts *refreshImageOptions) run(args []string, stdout io.Writer) error {
 	if err != nil {
 		return fmt.Errorf("Failed to pull falcon image: %v", err)
 	}
-	defer func() { 	_ = falconImage.Delete() }()
+	defer func() { _ = falconImage.Delete() }()
 
 	ref, err := falconImage.ImageReference()
 	if err != nil {
