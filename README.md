@@ -1,3 +1,11 @@
+## Deprecated
+
+Kubectl-falcon project has been deprecated. Please consider adopting the following projects instead:
+ - falcon-operator - Kubernetes operator to manage deployment of Falcon sensors to the cluster
+ - falcon-helm - helm chart to manage deployment of Falcon sensors to the cluster
+ - cloud-tools-image - collection of tools for Falcon Container manipulation in cloud settings
+ 
+
 # kubectl-falcon ![Build CI](https://github.com/CrowdStrike/kubectl-falcon/workflows/Build%20CI/badge.svg)
 
 [Falcon](https://www.crowdstrike.com/) is the [CrowdStrike](https://www.crowdstrike.com/)
